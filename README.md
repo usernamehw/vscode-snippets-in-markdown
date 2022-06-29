@@ -6,7 +6,7 @@ console.log($0);
 ```
 ````
 
-![demo_of_markdown_file](./img/demo.png)
+<img src="./img/demo.png" alt="demo_of_markdown_file" width="600">
 
 Use spaces for indentation in the `snippets.md` file (not tabs).
 
