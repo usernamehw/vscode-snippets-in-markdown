@@ -49,8 +49,11 @@ export function deactivateEditorFeatures() {
 }
 
 function onDidChangeTextDocument(_: TextDocumentChangeEvent, editor: TextEditor) {
-	updateDecorations(editor);
-	generateSnippetsFile(editor);
+	// juuuuust in case check that the editor is the snippet file
+	if (editor && isActiveEditorTheOneAndOnly(editor)) {
+		updateDecorations(editor);
+		generateSnippetsFile(editor);
+	}
 }
 
 export const generateSnippetsFile = debounce(async (editor?: TextEditor) => {
