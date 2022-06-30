@@ -4,7 +4,8 @@ import path from 'path';
 import { Disposable, TextDocumentChangeEvent, TextEditor, workspace } from 'vscode';
 import { getSnippetsFolderPath } from './commands/openSnippetsFile';
 import { $state } from './extension';
-import { updateAutocomplete } from './languageFeatures';
+import { updateAutocomplete } from './languageFeatures/completionProvider';
+import { createDecorations, disposeDecorations, updateDecorations } from './languageFeatures/decorations';
 import { Constants } from './types';
 
 let onDidChangeTextDocumentDisposable: Disposable | undefined;
@@ -12,10 +13,8 @@ let onDidChangeTextDocumentDisposable: Disposable | undefined;
 export function onChangeActiveTextEditor(editor?: TextEditor) {
 	if (editor && isActiveEditorTheOneAndOnly(editor)) {
 		activateEditorFeatures(editor);
-		updateAutocomplete(editor);
 	} else {
 		deactivateEditorFeatures();
-		updateAutocomplete();
 	}
 }
 
@@ -33,17 +32,24 @@ export function isActiveEditorTheOneAndOnly(editor?: TextEditor): boolean {
 }
 
 export function activateEditorFeatures(editor: TextEditor) {
-	onDidChangeTextDocumentDisposable?.dispose();
+	createDecorations();
+	updateDecorations(editor);
 
+	onDidChangeTextDocumentDisposable?.dispose();
 	onDidChangeTextDocumentDisposable = workspace.onDidChangeTextDocument(e => {
 		onDidChangeTextDocument(e, editor);
 	});
+
+	updateAutocomplete(editor);
 }
 export function deactivateEditorFeatures() {
+	updateAutocomplete();
 	onDidChangeTextDocumentDisposable?.dispose();
+	disposeDecorations();
 }
 
 function onDidChangeTextDocument(_: TextDocumentChangeEvent, editor: TextEditor) {
+	updateDecorations(editor);
 	generateSnippetsFile(editor);
 }
 

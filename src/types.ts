@@ -5,4 +5,6 @@ export const enum Constants {
 	SkipSnippetPart = '_',
 	GlobalMarkdownSnippetFileName = 'snippets.md',
 	GlolalGeneratedSnippetFileName = 'generated.code-snippets',
+
+	SnippetVariableColorId = 'snippetsInMarkdown.snippetVariableForeground',
 }

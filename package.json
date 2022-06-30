@@ -43,6 +43,18 @@
 				"title": "Open Global Snippets File",
 				"category": "Snippets In Markdown"
 			}
+		],
+		"colors": [
+			{
+				"id": "snippetsInMarkdown.snippetVariableForeground",
+				"defaults": {
+					"dark": "#00bd94",
+					"highContrast": "#00bd94",
+					"highContrastLight": "#00bd94",
+					"light": "#00bd94"
+				},
+				"description": "Variable highlights in `snippets.md` file, such as `$TM_SELECTED_TEXT`."
+			}
 		]
 	},
 	"scripts": {

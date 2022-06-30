@@ -22,3 +22,13 @@ There is autocomplete for variables such as `TM_SELECTED_TEXT`, but it doesn't a
 |-|-|
 |snippetsInMarkdown.openSnippetsFile|Snippets In Markdown: Open Global Snippets File|
 <!-- COMMANDS_END -->
+
+<!-- COLORS_START -->
+## Colors (1)
+
+Can be specified in `settings.json` (**`workbench.colorCustomizations`** section)
+
+|Color|Dark|Light|HC|Description|
+|-|-|-|-|-|
+|snippetsInMarkdown.snippetVariableForeground|`#00bd94`|`#00bd94`|`#00bd94`|Variable highlights in `snippets.md` file, such as `$TM_SELECTED_TEXT`.|
+<!-- COLORS_END -->
