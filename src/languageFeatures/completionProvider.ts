@@ -2,13 +2,15 @@ import { CompletionItem, CompletionItemKind, Disposable, languages, TextEditor }
 import { snippetVariables } from '../constants';
 
 
-let autocompleteDisposable: Disposable | undefined;
+let snippetVariablesAutocompleteDisposable: Disposable | undefined;
+let languageScopesAutocompleteDisposable: Disposable | undefined;
 
 export function updateAutocomplete(editor?: TextEditor) {
-	autocompleteDisposable?.dispose();
+	snippetVariablesAutocompleteDisposable?.dispose();
+	languageScopesAutocompleteDisposable?.dispose();
 
 	if (editor) {
-		autocompleteDisposable = languages.registerCompletionItemProvider({
+		snippetVariablesAutocompleteDisposable = languages.registerCompletionItemProvider({
 			language: 'markdown',
 			pattern: '**/snippets.md',
 		}, {
@@ -21,6 +23,23 @@ export function updateAutocomplete(editor?: TextEditor) {
 			},
 		},
 		'$',
+		);
+
+		languageScopesAutocompleteDisposable = languages.registerCompletionItemProvider({
+			language: 'markdown',
+			pattern: '**/snippets.md',
+		}, {
+			async provideCompletionItems(document, position, token, context) {
+				const linePrefix = document.lineAt(position).text.slice(0, position.character);
+				if (linePrefix.endsWith('```') || /```([a-z-]+,)+$/.test(linePrefix)) {
+					const langs = await languages.getLanguages();
+					return langs.map(lang => new CompletionItem(lang));
+				}
+				return [];
+			},
+		},
+		'`',
+		',',
 		);
 	}
 }
