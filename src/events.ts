@@ -70,8 +70,7 @@ export const generateSnippetsFile = debounce(async (editor?: TextEditor) => {
 
 		const snippet = snippetFromParts(body, editor.options.tabSize as number, otherParts);
 		const snippetName = snippet.name || uniqueId();
-		delete snippet?.name;
-		snippets[snippetName] = snippet;
+		snippets[snippetName] = snippet.snippet;
 	}
 
 	const snippetsFolderPath = getSnippetsFolderPath($state.context);
@@ -89,7 +88,7 @@ interface SnippetType {
 	scope?: string;
 }
 
-function snippetFromParts(body: string, indentSize = 4, otherParts = ''): SnippetType & { name?: string } {
+function snippetFromParts(body: string, indentSize = 4, otherParts = ''): { snippet: SnippetType; name?: string } {
 	const [scopes, prefixes, name, description] = otherParts.split(' ');
 
 	const snippetBody = body.split('\n')
@@ -105,10 +104,12 @@ function snippetFromParts(body: string, indentSize = 4, otherParts = ''): Snippe
 		});
 
 	return {
-		prefix: useStringWhenPossible(prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined),
-		scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
-		body: useStringWhenPossible(snippetBody),
-		description: description && description !== Constants.SkipSnippetPart ? description : undefined,
+		snippet: {
+			prefix: useStringWhenPossible(prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined),
+			scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
+			body: useStringWhenPossible(snippetBody),
+			description: description && description !== Constants.SkipSnippetPart ? description : undefined,
+		},
 		name: name && name !== Constants.SkipSnippetPart ? name : undefined,
 	};
 }
