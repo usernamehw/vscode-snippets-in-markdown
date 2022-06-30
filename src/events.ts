@@ -99,9 +99,9 @@ function snippetFromParts(body: string, indentSize = 4, otherParts = ''): Snippe
 		});
 
 	return {
-		body: useStringWhenPossible(snippetBody),
-		scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
 		prefix: useStringWhenPossible(prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined),
+		scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
+		body: useStringWhenPossible(snippetBody),
 		description: description && description !== Constants.SkipSnippetPart ? description : undefined,
 		name: name && name !== Constants.SkipSnippetPart ? name : undefined,
 	};
