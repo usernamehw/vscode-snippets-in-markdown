@@ -99,12 +99,19 @@ function snippetFromParts(body: string, indentSize = 4, otherParts = ''): Snippe
 		});
 
 	return {
-		body: snippetBody,
-		scope: scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined,
-		prefix: prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined,
+		body: useStringWhenPossible(snippetBody),
+		scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
+		prefix: useStringWhenPossible(prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined),
 		description: description && description !== Constants.SkipSnippetPart ? description : undefined,
 		name: name && name !== Constants.SkipSnippetPart ? name : undefined,
 	};
+}
+
+function useStringWhenPossible<T>(item: T): T {
+	if (Array.isArray(item) && item.length === 1) {
+		return item[0];
+	}
+	return item;
 }
 
 function uniqueId() {
