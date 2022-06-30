@@ -31,7 +31,7 @@ export function updateAutocomplete(editor?: TextEditor) {
 		}, {
 			async provideCompletionItems(document, position, token, context) {
 				const linePrefix = document.lineAt(position).text.slice(0, position.character);
-				if (linePrefix.endsWith('```') || /```([a-z-]+,)+$/.test(linePrefix)) {
+				if (linePrefix.endsWith('```') || /```([a-z_-]+,)+$/.test(linePrefix)) {
 					const langs = await languages.getLanguages();
 					return langs.map(lang => new CompletionItem(lang));
 				}
