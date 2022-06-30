@@ -23,13 +23,15 @@
 	},
 	"keywords": [
 		"snippet",
+		"snippets",
 		"markdown",
 		"create",
 		"multiline",
 		"multi-line"
 	],
 	"categories": [
-		"Other"
+		"Other",
+		"Snippets"
 	],
 	"activationEvents": [
 		"onLanguage:markdown",
