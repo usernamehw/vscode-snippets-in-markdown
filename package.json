@@ -2,7 +2,7 @@
 	"name": "snippets-in-markdown",
 	"displayName": "Snippets in Markdown",
 	"description": "Keep snippets in Markdown file.",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "usernamehw",
 	"license": "MIT",
 	"engines": {
