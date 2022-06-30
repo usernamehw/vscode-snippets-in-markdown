@@ -71,7 +71,7 @@ export const generateSnippetsFile = debounce(async (editor?: TextEditor) => {
 	const snippetsFolderPath = getSnippetsFolderPath($state.context);
 	const generatedPath = path.join(snippetsFolderPath, Constants.GlolalGeneratedSnippetFileName);
 
-	await fs.promises.writeFile(generatedPath, `${Constants.GeneratedWarning}${JSON.stringify(snippets, undefined, '  ')}`);
+	await fs.promises.writeFile(generatedPath, `${Constants.GeneratedWarning}${JSON.stringify(snippets, undefined, Constants.TabSymbol)}`);
 }, 1000, {
 	leading: false,
 });
