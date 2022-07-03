@@ -6,6 +6,7 @@ import { getSnippetsFolderPath } from './commands/openSnippetsFile';
 import { $state } from './extension';
 import { updateAutocomplete } from './languageFeatures/completionProvider';
 import { createDecorations, disposeDecorations, updateDecorations } from './languageFeatures/decorations';
+import { updateHover } from './languageFeatures/hoverProvider';
 import { Constants } from './types';
 
 let onDidChangeTextDocumentDisposable: Disposable | undefined;
@@ -41,9 +42,11 @@ export function activateEditorFeatures(editor: TextEditor) {
 	});
 
 	updateAutocomplete(editor);
+	updateHover(editor);
 }
 export function deactivateEditorFeatures() {
 	updateAutocomplete();
+	updateHover();
 	onDidChangeTextDocumentDisposable?.dispose();
 	disposeDecorations();
 }
