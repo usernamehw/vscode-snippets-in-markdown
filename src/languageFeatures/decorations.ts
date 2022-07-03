@@ -14,7 +14,7 @@ export function createDecorations() {
 export function updateDecorations(editor: TextEditor) {
 	const ranges: Range[] = [];
 
-	const variablesRegexp = new RegExp(snippetVariables.map(variable => `\\$\\{${variable[0]}\\}|\\$?${variable[0]}`).join('|'), 'g');
+	const variablesRegexp = new RegExp(snippetVariables.map(variable => `\\$\\{${variable[0]}(:[a-zA-Z]+?)?\\}|\\$${variable[0]}`).join('|'), 'g');
 
 	for (let lineNumber = 0; lineNumber < editor.document.lineCount; lineNumber++) {
 		const line = editor.document.lineAt(lineNumber);
