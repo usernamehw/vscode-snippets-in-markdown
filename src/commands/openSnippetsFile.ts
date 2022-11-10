@@ -28,7 +28,7 @@ export async function openSnippetsFile(context: ExtensionContext) {
 }
 
 export function getSnippetsFolderPath(context: ExtensionContext) {
-	return path.join(context.logUri.fsPath, '..', '..', '..', '..', 'User', 'snippets');
+	return path.join(context.logUri.fsPath, '..', '..', '..', '..', '..', 'User', 'snippets');
 }
 export async function openFileInEditor(absolutePath: string): Promise<void> {
 	const document = await workspace.openTextDocument(Uri.file(absolutePath));
