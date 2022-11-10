@@ -1,3 +1,9 @@
+## 0.3.0 `10 Nov 2022`
+
+- ✨ Variable descriptions on hover
+- ✨ Decorations for tabstops
+- 🐛 Fix path to snippets file
+
 ## 0.2.0 `30 Jun 2022`
 
 - ✨ Highlight snippet variables
