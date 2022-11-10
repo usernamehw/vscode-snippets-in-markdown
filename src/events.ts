@@ -67,7 +67,7 @@ export const generateSnippetsFile = debounce(async (editor?: TextEditor) => {
 
 	const snippets: Record<string, SnippetType> = {};
 
-	const codeBlockRegex = /```(.*?)?\n([\s\S]+?)\n```/gm;
+	const codeBlockRegex = /```(.*?)?\n([\s\S]*?)\n```/gm;
 	let match;
 
 	while ((match = codeBlockRegex.exec(text)) !== null) {

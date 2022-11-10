@@ -1,7 +1,6 @@
 import { CompletionItem, CompletionItemKind, Disposable, languages, TextEditor } from 'vscode';
 import { snippetVariables } from '../constants';
 
-
 let snippetVariablesAutocompleteDisposable: Disposable | undefined;
 let languageScopesAutocompleteDisposable: Disposable | undefined;
 
