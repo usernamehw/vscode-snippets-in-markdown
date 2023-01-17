@@ -1,3 +1,7 @@
+[![Version](https://img.shields.io/visual-studio-marketplace/v/usernamehw.snippets-in-markdown)](https://marketplace.visualstudio.com/items?itemName=usernamehw.snippets-in-markdown)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/usernamehw.snippets-in-markdown)](https://marketplace.visualstudio.com/items?itemName=usernamehw.snippets-in-markdown)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/usernamehw.snippets-in-markdown)](https://marketplace.visualstudio.com/items?itemName=usernamehw.snippets-in-markdown)
+
 Use markdown file and Fenced Code Blocks to store all snippets. Example:
 
 ````
