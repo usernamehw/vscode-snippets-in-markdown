@@ -27,6 +27,7 @@ export const snippetVariables: [string, string][] = [
 	['CURRENT_MINUTE', 'The current minute as two digits'],
 	['CURRENT_SECONDS_UNIX', 'The number of seconds since the Unix epoch'],
 	['CURRENT_SECOND', 'The current second as two digits'],
+	['CURRENT_TIMEZONE_OFFSET', 'The current UTC time zone offset as +HHMM or -HHMM (example -0700)'],
 	['RANDOM_HEX', '6 random Base-16 digits'],
 	['RANDOM', '6 random Base-10 digits'],
 	['UUID', 'A Version 4 UUID'],
