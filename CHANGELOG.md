@@ -1,3 +1,8 @@
+## 0.4.0 `23 Jul 2023`
+
+- 🐛 Fix: map scope `js`, `ts`, `jsx`,`tsx` to `javascript`, `typescript`, `javascriptreact`,`typescriptreact`
+- 🐛 fix: add `CURRENT_TIMEZONE_OFFSET` snippet variable
+
 ## 0.3.0 `10 Nov 2022`
 
 - ✨ Variable descriptions on hover
