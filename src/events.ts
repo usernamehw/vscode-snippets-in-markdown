@@ -127,6 +127,8 @@ function snippetFromParts(body: string, indentSize = 4, otherParts = ''): { snip
  */
 function markdownLanguageIdToVscodeLanguageId(languages: string): string {
 	const languageMap: Record<string, string> = {
+		js: 'javascript',
+		ts: 'typescript',
 		jsx: 'javascriptreact',
 		tsx: 'typescriptreact',
 	};
