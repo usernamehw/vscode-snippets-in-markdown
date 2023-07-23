@@ -95,7 +95,7 @@ interface SnippetType {
 }
 
 function snippetFromParts(body: string, indentSize = 4, otherParts = ''): { snippet: SnippetType; name?: string } {
-	const [scopes, prefixes, name, description] = otherParts.split(' ');
+	const [scope, prefixes, name, description] = otherParts.split(' ');
 
 	const snippetBody = body.split('\n')
 		.map(line => {
@@ -109,15 +109,29 @@ function snippetFromParts(body: string, indentSize = 4, otherParts = ''): { snip
 			return line;
 		});
 
+	const snippetScope = markdownLanguageIdToVscodeLanguageId(scope);
+
 	return {
 		snippet: {
 			prefix: useStringWhenPossible(prefixes && prefixes !== Constants.SkipSnippetPart ? prefixes.split(',') : undefined),
-			scope: useStringWhenPossible(scopes && scopes !== Constants.SkipSnippetPart ? scopes : undefined),
+			scope: useStringWhenPossible(snippetScope && snippetScope !== Constants.SkipSnippetPart ? snippetScope : undefined),
 			body: useStringWhenPossible(snippetBody),
 			description: description && description !== Constants.SkipSnippetPart ? description : undefined,
 		},
 		name: name && name !== Constants.SkipSnippetPart ? name : undefined,
 	};
+}
+/**
+ * Some language ids are different in markdown code highlight and
+ * in vscode language ids.
+ */
+function markdownLanguageIdToVscodeLanguageId(languages: string): string {
+	const languageMap: Record<string, string> = {
+		jsx: 'javascriptreact',
+		tsx: 'typescriptreact',
+	};
+
+	return languages.split(',').map(mdLanguage => languageMap[mdLanguage] || mdLanguage).join(',');
 }
 
 function useStringWhenPossible<T>(item: T): T {
